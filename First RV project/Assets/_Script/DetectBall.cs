@@ -7,6 +7,7 @@ public class DetectBall : MonoBehaviour
     public GameObject ball;
     public GameObject cube;
     public GameObject teleportPlane;
+    public GameObject explosion;
     GameObject door;
     public bool isLocked = true;
 
@@ -27,20 +28,24 @@ public class DetectBall : MonoBehaviour
             if (CheckCollision(ball.GetComponent<Collider>(), cube.GetComponent<Collider>()))
             {
                 if (isElevated == false){
-                    ElevateDoor();
+                    // ElevateDoor();
+                    explosion.SetActive(true);
+                    Destroy(ball);
+                    Destroy(cube);
+                    Destroy(door);
                     isElevated = true;
                     UnlockTeleportPlane();
 
                 }
                 
             }
-            else{
-                if (isElevated == true){
-                    LowerDoor();
-                    LockTeleportPlane();
-                    isElevated = false;
-                }
-            }
+            // else{
+                // if (isElevated == true){
+                //     LowerDoor();
+                //     LockTeleportPlane();
+                //     isElevated = false;
+                // }
+            // }
         }
     }
 
